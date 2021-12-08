@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddIsAdminToTheUsersTable extends Migration
+class AddMemberFlagToUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class AddIsAdminToTheUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->boolean('is_admin')->default(false);
+            $table->boolean('is_member')->after('is_admin')->default('0');
         });
     }
 
@@ -25,7 +25,7 @@ class AddIsAdminToTheUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('the_users', function (Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
             //
         });
     }

@@ -3,13 +3,13 @@
 namespace App\Http\Livewire;
 
 use App\Models\Song;
+use App\Models\User;
 use App\Models\Status;
-use App\Models\Member;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Str;
-use Illuminate\Validation\Rule;
 use Livewire\Component;
+use Illuminate\Support\Str;
 use Livewire\WithPagination;
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Auth;
 
 class Songs extends Component
 {
@@ -30,7 +30,6 @@ class Songs extends Component
     public $time;
     public $status_id;
     public $notes;
-    public $members;
     public $song;
 
     public function rules()
@@ -178,7 +177,7 @@ class Songs extends Component
     {
         return view('livewire.songs', [
             'data' => $this->read(),
-            'bands' => Member::all(),
+            'bands' => User::where('is_member', 1)->get(),
             'statuses' => Status::all(),
         ]);
     }

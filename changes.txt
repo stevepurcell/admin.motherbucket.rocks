@@ -1,0 +1,2 @@
+Done - 12/8/21 - Removed members table, added member flag to users table.  Modified code accordingly.
+
