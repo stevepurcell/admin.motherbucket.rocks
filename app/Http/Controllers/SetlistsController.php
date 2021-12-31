@@ -39,7 +39,7 @@ class SetlistsController extends Controller
 
         // Validate form date
         $this->validate($request, [
-            'name' => 'required | max:255',
+            'name' => 'required|unique:songlists|max:255',
         ]);
 
 
@@ -70,6 +70,59 @@ class SetlistsController extends Controller
         }
     }
 
+    public function copy($id)
+    {
+        // $songs = SongSonglist::where('songlist_id', $id)
+        //     ->orderBy('position', 'asc')
+        //     ->get();
+        //dd($songs);
+        $setlist = Songlist::where('id', $id)->first();
+        return view('setlists.copy', compact('setlist'));       
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function storecopy(Request $request)
+    {
+        $position = 0;
+        // Validate form data
+        $this->validate($request, [
+            'name' => 'required|unique:songlists|max:255',
+        ]);
+
+        // Process data and submit
+        $setlist = new Songlist();
+        $setlist->name = $request->newname;
+        $setlist->creator = auth()->user()->id;
+        $setlist->private = $request->private;
+        $setlist->song_list_group_id = $request->groupId;
+        $result1 = $setlist->save();
+        
+        $oldId = $request->setlistId;
+        $newId = $setlist->id;
+        
+        $songs = SongSonglist::where('songlist_id', $oldId)->get();
+
+        foreach($songs as $song){
+            $setlistitem = new SongSonglist();
+            $setlistitem->songlist_id = $newId;
+            $setlistitem->setlist_group_id = $song->setlist_group_id;
+            $setlistitem->song_id = $song->song_id;
+            $setlistitem->position = $song->position;
+            $result2 = $setlistitem->save();
+        }
+
+        if($result1 && $result2) {
+            return redirect()->route('setlistgroups.index')->with('success' , 'Setlist Group copied successfully');;
+        } else {
+            return redirect()->route('setlistgroups.create')->with('error' , 'Error copying Setlist Group');;
+        }
+    }
+
     /**
      * Display the specified resource.
      *
@@ -95,6 +148,8 @@ class SetlistsController extends Controller
 
         return view('setlists.sort', ['listid' => $id]);       
     }
+
+    
 
 
     /**

@@ -28,8 +28,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 // }]);
 
 Route::group(['middleware' => 'is_admin'], function () {
-        //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])
-        //    ->name('home');
+        Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     });
 
     Route::group(['middleware' => 'auth'], function () {
@@ -43,6 +42,8 @@ Route::get('setlists/create/{id}', [
     'uses' => '\App\Http\Controllers\SetlistsController@create'
 ]);
 
+
+
 Route::get('setlists/report/{id}', [
     'as' => 'setlists.report',
     'uses' => '\App\Http\Controllers\SetlistsController@report'
@@ -50,8 +51,15 @@ Route::get('setlists/report/{id}', [
 
 Route::resource('setlists', \App\Http\Controllers\SetlistsController::class, 
     ['except' => 'create']);
-    
+ 
+Route::post('setlists/storecopy', [
+    'as' => 'setlists.storecopy',
+    'uses' => '\App\Http\Controllers\SetlistsController@storecopy'
+]);
+
 Route::get('/setlists/{id}/sort', '\App\Http\Controllers\SetlistsController@sort')->name('setlists.sort');
+
+Route::get('/setlists/{id}/copy', '\App\Http\Controllers\SetlistsController@copy')->name('setlists.copy');
 
 Route::get('/profile', [App\Http\Controllers\HomeController::class, 'profile'])->name('profile');
 

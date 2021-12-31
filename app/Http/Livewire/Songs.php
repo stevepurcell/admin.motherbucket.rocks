@@ -178,7 +178,7 @@ class Songs extends Component
         return view('livewire.songs', [
             'data' => $this->read(),
             'bands' => User::where('is_member', 1)->get(),
-            'statuses' => Status::all(),
+            'statuses' => Status::orderBy('value', 'asc')->get()
         ]);
     }
 }

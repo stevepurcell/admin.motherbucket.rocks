@@ -59,6 +59,7 @@
                     <td class="">
                         <div class="btn-group">
                             <form action="{{ route('setlists.destroy',$songlist->id) }}" method="POST">   
+                                <a class="btn btn-sm btn-warning" href="{{ route('setlists.copy', $songlist->id) }}">Copy</a>
                                 <a class="btn btn-sm btn-success" href="{{ route('setlists.sort', $songlist->id) }}">Sort</a>
                                 <a class="btn btn-sm btn-primary" href="{{ route('setlists.edit',$songlist->id) }}">Edit</a>   
                                     @csrf

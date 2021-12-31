@@ -3,22 +3,16 @@
         <div class="card-header bg-light">
             <div class="d-flex justify-content-between">
                 <h3>Songs</h3> 
-                <a wire:click.prevent="showStatus('0')" href="#" class="btn btn-dark">All Songs 
-                    <span class="badge badge-light">{{ getStatusCount(0) }}</span>
+
+
+                @foreach($statuses as $status)
+                    <a wire:click.prevent="showStatus({{ $status->value }})" 
+                        href="#" class="btn btn-{{ $status->style }}">{{ $status->name }} 
+                    <span class="badge badge-light">{{ getStatusCount($status->value) }}</span>
                 </a>
-                <a wire:click.prevent="showStatus('4')" href="#" class="btn btn-primary">New Songs
-                    <span class="badge badge-light">{{ getStatusCount(4) }}</span>
-                </a>
-                <a wire:click.prevent="showStatus('1')" href="#" class="btn btn-info">Playable
-                    <span class="badge badge-light">{{ getStatusCount(1) }}</span>
-                </a>
-                <a wire:click.prevent="showStatus('2')" href="#" class="btn btn-warning">Good To Go
-                    <span class="badge badge-light">{{ getStatusCount(2) }}</span>
-                </a>
-                <a wire:click.prevent="showStatus('3')" href="#" class="btn btn-success">Kick Ass
-                    <span class="badge badge-light">{{ getStatusCount(3) }}</span>
-                </a>
-                <a wire:click.prevent="createShowModal" href="#" class="btn btn-secondary">New Song</a>
+                @endforeach
+
+                <a wire:click.prevent="createShowModal" href="#" class="btn btn-outline-dark">New Song</a>
             </div>
         </div>
         <div class="card-body">
