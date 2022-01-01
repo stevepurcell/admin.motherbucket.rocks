@@ -50,7 +50,7 @@
                with font-awesome or any other icon font library -->
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-users"></i>
+              <i class="nav-icon fas fa-user"></i>
               <p>Contacts</p>
             </a>
           </li>
@@ -78,13 +78,21 @@
               <p>Gear</p>
             </a>
           </li>
+          @if(Auth::user()->is_admin )
           <li class="nav-item">
+            <a href="/users" class="nav-link">
+              <i class="nav-icon  fas fa-users"></i>
+              <p>Users</p>
+            </a>
+          </li>
+          @endif
+          <li class="nav-item border-secondary border-top">
             <a href="/profile" class="nav-link">
               <i class="nav-icon fas fa-user"></i>
               <p>Profile</p>
             </a>
           </li>
-          <li class="nav-item  border-secondary border-top">
+          <li class="nav-item ">
             <a class="dropdown-item mt-2" href="{{ route('logout') }}"
                 onclick="event.preventDefault();
                       document.getElementById('logout-form').submit();">
