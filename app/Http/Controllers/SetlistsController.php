@@ -37,7 +37,7 @@ class SetlistsController extends Controller
     {
         $position = 0;
 
-        // Validate form date
+        //Validate form date
         $this->validate($request, [
             'name' => 'required|unique:songlists|max:255',
         ]);
@@ -50,7 +50,6 @@ class SetlistsController extends Controller
         $setlist->private = $request->private;
         $setlist->song_list_group_id = $request->groupId;
         $result1 = $setlist->save();
-        
         $songs = $request->input('songlist');
 
         foreach($songs as $song){
@@ -90,6 +89,8 @@ class SetlistsController extends Controller
     {
         $position = 0;
         // Validate form data
+
+        
         $this->validate($request, [
             'name' => 'required|unique:songlists|max:255',
         ]);
@@ -101,7 +102,6 @@ class SetlistsController extends Controller
         $setlist->private = $request->private;
         $setlist->song_list_group_id = $request->groupId;
         $result1 = $setlist->save();
-        
         $oldId = $request->setlistId;
         $newId = $setlist->id;
         
@@ -119,7 +119,7 @@ class SetlistsController extends Controller
         if($result1 && $result2) {
             return redirect()->route('setlistgroups.index')->with('success' , 'Setlist Group copied successfully');;
         } else {
-            return redirect()->route('setlistgroups.create')->with('error' , 'Error copying Setlist Group');;
+            return redirect()->route('setlistgroups.index')->with('error' , 'Error copying Setlist Group');;
         }
     }
 

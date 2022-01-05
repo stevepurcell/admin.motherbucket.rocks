@@ -27,7 +27,7 @@ class CreateContactsTable extends Migration
             $table->string('phone', 255)->nullable()->default('');
             $table->string('email', 255)->nullable();
             $table->string('website', 255)->nullable();
-            $table->string('contact', 255)->nullable()->default('');
+            $table->string('contact_name', 255)->nullable()->default('');
             $table->text('notes')->nullable();
             $table->bigInteger('contact_type_id');
             $table->softDeletes();

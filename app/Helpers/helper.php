@@ -43,7 +43,6 @@ function getStatusCount($statusId) {
     } else {
         return Song::all()->count();
     }
-    
 }
 
 function getSongCount($songlistId) {

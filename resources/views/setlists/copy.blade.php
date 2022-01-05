@@ -23,7 +23,7 @@
                     <input type="input" readonly class="form-control-plaintext" value="{{ $setlist->name }}" name="name" id="name">
                   </div>
                   <div class="form-group">
-                    <label for="name">New Setlist Name</label>
+                    <label for="newname">New Setlist Name</label>
                     <input type="input" class="form-control" name="newname" id="newname">
                   </div>
                 </div>

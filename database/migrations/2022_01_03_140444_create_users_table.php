@@ -22,12 +22,13 @@ class CreateUsersTable extends Migration
             $table->string('name', 255);
             $table->string('email', 255);
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password', 255);
+            $table->string('password', 255)->nullable()->default('');
+            $table->tinyInteger('is_member')->nullable()->default(0);
+            $table->tinyInteger('is_admin')->nullable()->default(0);
             $table->text('two_factor_secret')->nullable();
             $table->text('two_factor_recovery_codes')->nullable();
             $table->rememberToken();
             $table->nullableTimestamps();
-            $table->tinyInteger('is_admin')->default(0);
             $table->string('website', 255)->nullable();
             $table->timestamp('last_action_at')->nullable();
             $table->unique('email', 'users_email_unique');

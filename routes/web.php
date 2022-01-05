@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Livewire\User;
+use App\Http\Livewire\Songs;
+use App\Http\Livewire\Contacts;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -23,7 +25,8 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/users', User::class)->name('users');
-
+Route::get('/contacts', Contacts::class)->name('contacts');
+Route::get('/songs', Songs::class)->name('songs');
 
 //Route::get('admin_area', ['middleware' => 'admin', function () {
 //
@@ -35,7 +38,7 @@ Route::group(['middleware' => 'is_admin'], function () {
 
     Route::group(['middleware' => 'auth'], function () {
 // Songs
-Route::get('/', [\App\Http\Controllers\SongController::class, 'index'])->name('songs');
+//Route::get('/', [\App\Http\Controllers\SongController::class, 'index'])->name('songs');
 
 Route::resource('setlistgroups', \App\Http\Controllers\SetlistGroupsController::class);
     
@@ -43,8 +46,6 @@ Route::get('setlists/create/{id}', [
     'as' => 'setlists.create',
     'uses' => '\App\Http\Controllers\SetlistsController@create'
 ]);
-
-
 
 Route::get('setlists/report/{id}', [
     'as' => 'setlists.report',

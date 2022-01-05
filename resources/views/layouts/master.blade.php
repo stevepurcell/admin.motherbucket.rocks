@@ -49,19 +49,19 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="/contacts" class="nav-link">
               <i class="nav-icon fas fa-user"></i>
               <p>Contacts</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="/" class="nav-link">
+            <a href="/songs" class="nav-link">
               <i class="nav-icon fa fa-music"></i>
               <p>Songs</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="setlistgroups" class="nav-link">
+            <a href="/setlistgroups" class="nav-link">
               <i class="nav-icon far fa-clone"></i>
               <p>Setlists</p>
             </a>
@@ -118,8 +118,10 @@
     <section class="content">
 
       <div class="c-body">
+        
         <main class="c-main">
-            @yield('content')
+          @include('partials.alerts')
+          @yield('content')
         </main>
     </div>
     

@@ -179,6 +179,8 @@ class Songs extends Component
             'data' => $this->read(),
             'bands' => User::where('is_member', 1)->get(),
             'statuses' => Status::orderBy('value', 'asc')->get()
-        ]);
+        ]) 
+        ->extends('layouts.master')
+        ->section('content');
     }
 }
