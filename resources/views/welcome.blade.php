@@ -25,8 +25,7 @@
 
             <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-                    <button type="button" class="btn btn-primary">Primary</button>
-                    <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Log in</a>
+                    <a href="{{ route('login') }}" class="btn btn-lg btn-primary">Log in</a>
                 </div>
                 <img src="{{ asset('img/mblogo.jpg') }}" width="1000px" alt="User Image">
                 
