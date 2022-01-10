@@ -39,7 +39,7 @@
           <img src="{{ asset('img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">{{ Auth::user()->name }}</a>
+          <a href="/" class="d-block">{{ Auth::user()->name }}</a>
         </div>
       </div>
 
@@ -132,7 +132,7 @@
 
   <footer class="main-footer">
     <div class="float-right d-none d-sm-block">
-      <b>Version</b> 1.3.0
+      <b>Version</b> {{ env('APP_VERSION') }} 
     </div>
     <strong>Copyright &copy; 2014-2021 <a href="http://stevepurcell.rocks">SP Entertainment</a>.</strong> All rights reserved.
   </footer>

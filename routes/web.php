@@ -23,7 +23,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/users', User::class)->name('users');
 Route::get('/contacts', Contacts::class)->name('contacts');
 Route::get('/songs', Songs::class)->name('songs');
@@ -33,7 +33,7 @@ Route::get('/songs', Songs::class)->name('songs');
 // }]);
 
 Route::group(['middleware' => 'is_admin'], function () {
-        Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+       // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     });
 
     Route::group(['middleware' => 'auth'], function () {
