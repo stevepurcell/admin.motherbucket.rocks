@@ -308,6 +308,24 @@ fieldset {
   border: 0;
 }
 
+.circle {
+  display: inline-block;
+    background-color: #0062cc;
+    margin: 10px;
+    border-radius: 50%;
+}
+
+.circle-inner {
+  color: white;
+  display: table-cell;
+  vertical-align: middle; 
+  text-align: center;
+  text-decoration: none;
+  height: 33px;
+  width: 33px;  
+  font-size: 18px;
+}
+
 legend {
   display: block;
   width: 100%;

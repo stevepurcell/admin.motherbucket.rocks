@@ -26,8 +26,9 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
+
     <a href="index3.html" class="brand-link">
-      <img src="{{ asset('img/mb_logo_round.jpeg') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <div class="circle brand-image img-circle elevation-3" style="opacity: .8""><p class="circle-inner">BM</p></div>
       <span class="brand-text font-weight-light">{{ env('APP_NAME') }}</span>
     </a>
 
@@ -79,11 +80,46 @@
             </a>
           </li>
           @if(Auth::user()->is_admin )
-          <li class="nav-item">
+          <li class="nav-item border-secondary border-top">
             <a href="/users" class="nav-link">
               <i class="nav-icon  fas fa-users"></i>
               <p>Users</p>
             </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-tools"></i>
+              <p>
+                Maintenance
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="/users" class="nav-link">
+                  <i class="fas fa-user nav-icon"></i>
+                  <p>Users</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/contact-types" class="nav-link">
+                  <i class="fas fa-id-card nav-icon"></i>
+                  <p>Contact Types</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/status-types" class="nav-link">
+                  <i class="fas fa-clipboard-check nav-icon"></i>
+                  <p>Status Types</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Something Else</p>
+                </a>
+              </li>
+            </ul>
           </li>
           @endif
           <li class="nav-item border-secondary border-top">
@@ -93,7 +129,7 @@
             </a>
           </li>
           <li class="nav-item ">
-            <a class="dropdown-item mt-2" href="{{ route('logout') }}"
+            <a href="{{ route('logout') }}" class="nav-link"
                 onclick="event.preventDefault();
                       document.getElementById('logout-form').submit();">
                       <i class="nav-icon fas fa-sign-out-alt"></i>

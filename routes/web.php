@@ -3,6 +3,8 @@
 use App\Http\Livewire\User;
 use App\Http\Livewire\Songs;
 use App\Http\Livewire\Contacts;
+use App\Http\Livewire\StatusTypes;
+use App\Http\Livewire\ContactTypes;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -27,6 +29,14 @@ Auth::routes();
 Route::get('/users', User::class)->name('users');
 Route::get('/contacts', Contacts::class)->name('contacts');
 Route::get('/songs', Songs::class)->name('songs');
+
+Route::get('/contact-types', ContactTypes::class)->name('songs');
+Route::get('/status-types', StatusTypes::class)->name('songs');
+Route::get('/users', User::class)->name('users');
+
+
+
+Route::get('/maint', [App\Http\Controllers\MaintController::class, 'index'])->name('maint');
 
 //Route::get('admin_area', ['middleware' => 'admin', function () {
 //

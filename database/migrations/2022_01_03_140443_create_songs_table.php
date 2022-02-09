@@ -27,7 +27,7 @@ class CreateSongsTable extends Migration
             $table->tinyInteger('keyboard')->nullable()->default(0);
             $table->tinyInteger('acoustic')->nullable()->default(0);
             $table->text('notes')->nullable();
-            $table->integer('time')->nullable();
+            $table->integer('time')->nullable()->default(4);
             $table->bigInteger('status_id')->nullable();
             $table->nullableTimestamps();
             $table->bigInteger('user_id')->nullable()->default(1);

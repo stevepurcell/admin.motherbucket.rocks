@@ -8,47 +8,42 @@
         <div class="card">
             <div class="card-header bg-primary">
                 <div class="d-flex justify-content-between">
-                    <h3>Users</h3> 
+                    <h3>Contact Types</h3> 
     
                     <a wire:click.prevent="createShowModal" href="#" class="btn btn-dark">New</a>
                 </div>
             </div>
             <div class="card-body table-responsive p-0" style="height: 500px;">
-            <table class="table">
+                <table class="table">
                 <thead>
                     <tr>
+                        <th scope="col" >ID</th>
                         <th scope="col" >Name</th>
-                        <th scope="col">Email</th>
-                        <th scope="col" >Role(s)</th>
-                        <th scope="col">Created</th>
-                        <th scope="col">Action</th>
+                        <th scope="col" >Style</th>
+                        <th scope="col" >Badge</th>
+                        <th scope="col" >Action</th>
+                
                     </tr>
                 </thead>
           <tbody>
                 @forelse ($data as $item)
                     <tr>
-                    <td>{{ $item->name }}</td>
-                    <td>{{ $item->email }}</td>
-                    <td>@if($item->is_member)
-                        <span class="badge badge-pill badge-warning">Member</span>
-                        @endif
-                        @if($item->is_admin)
-                        <span class="badge badge-pill badge-primary">Admin</span>
-                        @endif
-                    </td>
-                    <td>{{ $item->created_at->diffForHumans() }}</td>
-                    <td class="">
-                            <button class="btn btn-sm btn-primary"
-                                wire:click.prevent="updateShowModal({{ $item->id }})">Edit
-                            </button>
-                            <button class="btn btn-sm btn-danger"
-                                wire:click.prevent="deleteShowModal({{ $item->id }})">Delete
-                            </button>
+                        <td>{{ $item->id }}</td>
+                        <td>{{ $item->name }}</td>
+                        <td>{{ $item->style }}</td>
+                        <td><span class="badge badge-{{ $item->style }}">{{ $item->name }}</span></td>
+                        <td class="">
+                                <button class="btn btn-sm btn-primary"
+                                    wire:click.prevent="updateShowModal({{ $item->id }})">Edit
+                                </button>
+                                <button class="btn btn-sm btn-danger"
+                                    wire:click.prevent="deleteShowModal({{ $item->id }})">Delete
+                                </button>
                         </td>
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="3">No Users found.</td>
+                        <td colspan="3">No Contact Types found.</td>
                     </tr>
                 @endforelse
             </tbody>
@@ -60,7 +55,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title">{{ $editMode ? 'Edit User' : 'Add User' }}</h5>
+                            <h5 class="modal-title">{{ $contactTypeId ? 'Edit Contact Type' : 'Add ContactType' }}</h5>
                             <button wire:click="close" type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -78,37 +73,17 @@
                         </div>
     
                         <div class="form-group row">
-                            <label for="email" class="col-sm-2 col-form-label font-weight-bold">Email:</label>
+                            <label for="style" class="col-sm-2 col-form-label font-weight-bold">Style:</label>
                             <div class="col-sm-10">
-                                <input wire:model="email" class="form-control" id="email">
-                                @error('email')
+                                <input wire:model="style" class="form-control" id="style">
+                                @error('style')
                                     <div style="font-size: 11px; color: red">{{ $message }}</div>
                                 @enderror
                             </div>
                         </div>
-    
-                        <div class="form-group row">
-                            <label for="is_member" class="col-sm-2 col-form-label"></label>
-                            <div class="col-sm-10">
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" wire:model="is_member" id="keyboard" value="1">
-                                    <label class="form-check-label" for="inlineCheckbox1">Is Band Member</label>
-                                </div>
-                            </div>
-                        </div>
-    
-                        <div class="form-group row">
-                            <label for="is_admin" class="col-sm-2 col-form-label"></label>
-                            <div class="col-sm-10">
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" wire:model="is_admin" id="acoustic" value="1">
-                                    <label class="form-check-label" for="inlineCheckbox2">Is Admin User</label>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                         <div class="modal-footer">
-                            @if ($editMode)
+                            @if ($contactTypeId)
                                 <button <button class="btn btn-primary" wire:click="update" wire:loading.attr="disabled">
                                     {{ __('Update') }}
                                 </button>
@@ -140,19 +115,21 @@
                             <p>Are you sure you want to delete this record?</p>
                         </div>
                         <div class="modal-footer"> 
-                            <button type="button" wire:click="delete" class="btn btn-danger">
-                                {{ __('Delete') }}
-                            </button> 
                             <button class="btn btn-secondary" wire:click="$toggle('showDeleteModal')" data-dismiss="modal" wire:loading.attr="disabled">
                                 {{ __('Cancel') }}
                             </button>
-                            </div>
+                            <button type="button" wire:click="delete" class="btn btn-danger">
+                                {{ __('Delete') }}
+                            </button> </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+            </div>
+        </div>
+        
         
         
         

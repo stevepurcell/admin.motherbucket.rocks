@@ -200,9 +200,9 @@
                                     {{ __('Update') }}
                                 </button>
                             @else
-                                <button <button class="btn btn-primary" wire:click="create" wire:loading.attr="disabled">
+                                <button class="btn btn-primary" wire:click="create" wire:loading.attr="disabled">
                                     {{ __('Create') }}
-                                <button>
+                                </button>
                             @endif
                         </div>
                 </div>

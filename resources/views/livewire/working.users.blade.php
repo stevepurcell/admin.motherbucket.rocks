@@ -6,14 +6,14 @@
                     
                     <div class="col-md-12">
         <div class="card">
-            <div class="card-header bg-primary">
+            <div class="card-header bg-light">
                 <div class="d-flex justify-content-between">
                     <h3>Users</h3> 
     
-                    <a wire:click.prevent="createShowModal" href="#" class="btn btn-dark">New</a>
+                    <a wire:click.prevent="createShowModal" href="#" class="btn btn-outline-dark">New User</a>
                 </div>
             </div>
-            <div class="card-body table-responsive p-0" style="height: 500px;">
+            <div class="card-body">
             <table class="table">
                 <thead>
                     <tr>
@@ -113,9 +113,9 @@
                                     {{ __('Update') }}
                                 </button>
                             @else
-                                <button class="btn btn-primary" wire:click="create" wire:loading.attr="disabled">
+                                <button <button class="btn btn-primary" wire:click="create" wire:loading.attr="disabled">
                                     {{ __('Create') }}
-                                </button>
+                                <button>
                             @endif
                             <button class="btn btn-secondary" wire:click="$toggle('showModal')" wire:loading.attr="disabled">
                                 {{ __('Cancel') }}
@@ -140,13 +140,12 @@
                             <p>Are you sure you want to delete this record?</p>
                         </div>
                         <div class="modal-footer"> 
-                            <button type="button" wire:click="delete" class="btn btn-danger">
-                                {{ __('Delete') }}
-                            </button> 
                             <button class="btn btn-secondary" wire:click="$toggle('showDeleteModal')" data-dismiss="modal" wire:loading.attr="disabled">
                                 {{ __('Cancel') }}
                             </button>
-                            </div>
+                            <button type="button" wire:click="delete" class="btn btn-danger">
+                                {{ __('Delete') }}
+                            </button> </div>
                         </div>
                     </div>
                 </div>

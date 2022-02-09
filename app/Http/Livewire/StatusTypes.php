@@ -7,9 +7,11 @@ use Livewire\Component;
 use App\Models\User as UserModel;
 use Illuminate\Support\Facades\Hash;
 
-class User extends Component
+class StatusTypes extends Component
 {
     //use WithPagination;
+    public $sortColumn = 'name';
+    public $sortDirection = 'asc';
     public $showModal = false;
     public $showDeleteModal = false;
     public $displayStatus = 0;
@@ -27,7 +29,7 @@ class User extends Component
     {
         return [
             'name' => 'required',
-            'email' => 'required|unique:email',
+            'email' => 'required',
             'is_member' => 'nullable',
             'is_admin' => 'nullable',
             'password' => 'nullable',

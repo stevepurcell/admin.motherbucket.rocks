@@ -2,24 +2,19 @@
 
 namespace App\Http\Livewire;
 
-use console;
+use App\Models\ContactType;
 use Livewire\Component;
-use App\Models\User as UserModel;
 use Illuminate\Support\Facades\Hash;
 
-class User extends Component
+class ContactTypes extends Component
 {
-    //use WithPagination;
     public $showModal = false;
     public $showDeleteModal = false;
     public $displayStatus = 0;
-    public $userId;
+
+    public $contactTypeId;
     public $name;
-    public $email;
-    public $password;
-    public $is_member;
-    public $is_admin;
-    public $created_at;
+    public $style;
     public $user;
     public $editMode = false;
 
@@ -27,16 +22,13 @@ class User extends Component
     {
         return [
             'name' => 'required',
-            'email' => 'required|unique:email',
-            'is_member' => 'nullable',
-            'is_admin' => 'nullable',
-            'password' => 'nullable',
+            'style' => 'required',
         ];
     }
 
     public function render()
     {
-        return view('livewire.user', [
+        return view('livewire.contact-types', [
             'data' => $this->read(),
         ])
         ->extends('layouts.master')
@@ -45,7 +37,7 @@ class User extends Component
 
     public function read()
     {
-        return UserModel::orderby('name')->get();
+        return ContactType::orderby('name')->get();
     }
 
     public function createShowModal()
@@ -59,14 +51,14 @@ class User extends Component
     {
         $this->resetValidation();
         $this->reset();
-        $this->userId = $id;
+        $this->contactTypeId = $id;
         $this->showModal = true;
         $this->loadModel();
     }
 
     public function deleteShowModal($id)
     {
-        $this->userId = $id;
+        $this->contactTypeId = $id;
         $this->showDeleteModal = true;
     }
 
@@ -74,30 +66,18 @@ class User extends Component
     {
         $this->editMode = false;
         $this->validate();
-        UserModel::create($this->modelData());
+        ContactType::create($this->modelData());
         $this->showModal = false;
         $this->reset();
     }
 
     public function modelData()
     {
-        if($this->userId)
+        if($this->contactTypeId)
         {
-            // This is for an edit so the password is untouched.
             return [
                 'name' => $this->name,
-                'email' => $this->email,
-                'is_member' => $this->is_member,
-                'is_admin' => $this->is_admin,
-            ];   
-        } else {
-            // This is for a new record creating a password
-            return [
-                'name' => $this->name,
-                'email' => $this->email,
-                'is_member' => $this->is_member,
-                'is_admin' => $this->is_admin,
-                'password' => Hash::make('password'),
+                'style' => $this->style,
             ];   
         }
     }
@@ -106,24 +86,22 @@ class User extends Component
     {
         $this->editMode = false;
         $this->validate();
-        UserModel::find($this->userId)->update($this->modelData());
+        ContactType::find($this->contactTypeId)->update($this->modelData());
         $this->showModal = false;
     }
 
     public function delete()
     {
-        UserModel::destroy($this->userId);
+        ContactType::destroy($this->contactTypeId);
         $this->showDeleteModal = false;
         //$this->resetPage();
     }
 
     public function loadModel()
     {
-        $data = UserModel::find($this->userId);
+        $data = ContactType::find($this->contactTypeId);
         $this->name = $data->name;
-        $this->email = $data->email;
-        $this->is_member = $data->is_member;
-        $this->is_admin = $data->is_admin;    
+        $this->style = $data->style;
     }
 
     public function close()
